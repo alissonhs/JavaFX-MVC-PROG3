@@ -160,7 +160,6 @@ public class ClienteListaController implements Initializable {
 
     private void listarClientes() throws Exception {
         tableViewClienteNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-
         tableViewClienteCPF.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
 
         Criterios c = new Criterios("");
@@ -175,13 +174,11 @@ public class ClienteListaController implements Initializable {
                 return;
             }
             c.setCriterio(" where nome like '%" + par + "%' ");
-
-            lista = (List<Cliente>) dc.getByCriterios(c);
-            listaObserver = FXCollections.observableArrayList(lista);
-
-            tableViewCliente.setItems(listaObserver);
-
         }
+        lista = (List<Cliente>) dc.getByCriterios(c);
+        listaObserver = FXCollections.observableArrayList(lista);
+
+        tableViewCliente.setItems(listaObserver);
     }
 
     @Override

@@ -21,8 +21,7 @@ import javafx.stage.Stage;
  * @author Alisson H. Silva
  */
 public class LoginController implements Initializable {
-    
-    
+
     @FXML
     private Button btnEntrar;
 
@@ -35,41 +34,37 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField txtSenha;
 
-
     @FXML
     void btnEntrarClick(ActionEvent event) {
-        System.out.println("Passsei AQUI!");
         //Código para Validar o Lojin
         isAllowed = true;
-        System.out.println("Entrei!");
         dialogStage.close();
- 
+
     }
 
     @FXML
     void btnSairClick(ActionEvent event) {
         dialogStage.close();
     }
-    
+
     private Stage dialogStage;
     private boolean isAllowed = false;
-    
+
     /**
      * Initializes the controller class.
      */
-    
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-    }    
+    }
 
     public boolean isIsAllowed() {
         return isAllowed;
         // TODO
-    }    
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
