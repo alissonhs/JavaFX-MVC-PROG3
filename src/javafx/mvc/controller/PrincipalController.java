@@ -26,7 +26,7 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemCadastroCliente;
-    
+
     @FXML
     private MenuItem menuItemCadastroUsuario;
 
@@ -36,11 +36,8 @@ public class PrincipalController implements Initializable {
     @FXML
     public void menuItemCadastroClienteClick() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        System.out.println("Passei Aqui 1");
         loader.setLocation(ClienteListaController.class.getResource("/javafx/mvc/view/ClienteLista.fxml"));
-        System.out.println("Passei 2");
         Parent root = loader.load();
-        System.out.println("Passei 3");
         Scene scene = new Scene(root);
 
         //PrincipalController c = loader.getController();
@@ -50,13 +47,12 @@ public class PrincipalController implements Initializable {
     }
 
     @FXML
-    void menuItemCadastroUsuarioClick() throws IOException{
+    void menuItemCadastroUsuarioClick() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(UsuarioListaController.class.getResource("/javafx/mvc/view/UsuarioEdicao.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        
         achorPane.getChildren().add(root);
     }
 
