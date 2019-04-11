@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.LoginController">
+  <children>
+    <GridPane hgap="10.0" prefHeight="170.0" prefWidth="386.0" vgap="10.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="65.0">
+      <children>
+        <Label alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="249.0" text="Login:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label alignment="CENTER_RIGHT" prefHeight="144.0" prefWidth="441.0" text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtLogin" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <PasswordField fx:id="txtSenha" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+          <children>
+            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#btnEntrarClick" prefHeight="43.0" prefWidth="130.0" styleClass="btn-primary" text="Entrar" />
+            <Button fx:id="btnSair" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#btnSairClick" text="Sair" />
+          </children>
+        </HBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label alignment="CENTER" layoutX="2.0" layoutY="7.0" prefHeight="50.0" prefWidth="396.0" text="Efetue o Login !">
+      <font>
+        <Font name="Nirmala UI" size="45.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

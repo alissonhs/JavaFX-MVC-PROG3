@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.ClienteEdicaoController">
+  <children>
+    <GridPane hgap="10.0" prefHeight="382.0" prefWidth="550.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="94.0">
+      <children>
+        <Label alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="285.0" text="Nome:" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <font>
+            <Font name="Arial Black" size="12.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" font="$x1" prefHeight="184.0" prefWidth="395.0" text="CNPJ:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label alignment="CENTER_RIGHT" font="$x1" prefHeight="165.0" prefWidth="407.0" text="Situação:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtNome" prefHeight="74.0" prefWidth="378.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="txtCnpj" prefHeight="65.0" prefWidth="378.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cbSituacao" prefHeight="21.0" prefWidth="270.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label layoutX="45.0" layoutY="34.0" text="Detalhes do Cliente">
+      <font>
+        <Font name="Arial Black" size="45.0" />
+      </font>
+    </Label>
+    <HBox layoutX="477.0" layoutY="470.0" prefHeight="100.0" prefWidth="323.0">
+      <children>
+        <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarClick" styleClass="btn-test" text="Salvar" />
+        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelarClick" styleClass="btn-danger" text="Cancelar" />
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

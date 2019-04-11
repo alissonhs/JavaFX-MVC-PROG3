@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.CadUsuarioController">
+  <children>
+    <GridPane layoutX="11.0" layoutY="87.0" prefHeight="210.0" prefWidth="586.0">
+      <children>
+        <Label alignment="CENTER_RIGHT" prefHeight="102.0" prefWidth="508.0" text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label alignment="CENTER_RIGHT" prefHeight="138.0" prefWidth="610.0" text="Login:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label alignment="CENTER_RIGHT" prefHeight="142.0" prefWidth="613.0" text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label alignment="CENTER_RIGHT" prefHeight="262.0" prefWidth="870.0" text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="edNome" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="edLogin" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <PasswordField fx:id="edSenha" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <ComboBox fx:id="cbStatus" prefHeight="21.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="266.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="320.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="0.0" prefHeight="74.0" prefWidth="593.0" text="Cadastro de Usuario!" />
+    <HBox alignment="CENTER_RIGHT" layoutX="11.0" layoutY="316.0" prefHeight="61.0" prefWidth="583.0" spacing="25.0">
+      <children>
+        <Button fx:id="btNovo" mnemonicParsing="false" onAction="#btNovoClick" text="Novo" />
+        <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#btSalvarClick" prefHeight="41.0" prefWidth="77.0" text="Salvar" />
+        <Button fx:id="btFechar" mnemonicParsing="false" onAction="#btFecharClick" text="Fechar">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

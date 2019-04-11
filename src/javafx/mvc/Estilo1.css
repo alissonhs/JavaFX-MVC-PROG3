@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/03/2019, 19:37:27
+    Author     : Alisson H. Silva
+*/
+
+.button{
+    -fx-background-color: #eee;
+    -fx-text-fill: #333;
+    -fx-border-radius: 0px;   
+    -fx-effect: dropshadow(gaussian,#444,0,1,1,1);
+} *.button:hover{
+    -fx-background-color: #666;
+    -fx-text-fill: #fff;    
+}
+.btn-primary{
+    -fx-background-color:#3300ff;
+    -fx-text-fill: #000;
+    -fx-font-size: 12px;
+}
+.btn-primary:hover{
+    -fx-background-color: #8aa5d9;
+    -fx-text-fill: #fff;
+}
+.bg{
+    -fx-background-image: url(SaitamaSenpai.png);
+    -fx-background-size:cover;
+}
+.btn-primari{
+    -fx-background-color: #99ff99;
+    -fx-text-fill: #000;
+}
+.btn-secondary{
+    -fx-background-color: #66ffcc;
+    -fx-text-fill: #3300ff;
+    -fx-font-size: 15px;
+}
+.btn-danger{
+    -fx-background-color: #ff0000;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 25px;
+}
+.btn-test{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #ffffff;
+}

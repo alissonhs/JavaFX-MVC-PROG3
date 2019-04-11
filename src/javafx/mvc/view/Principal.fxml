@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="624.0" prefWidth="821.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.PrincipalController">
+  <children>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="Cadastros">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#menuItemCadastroClienteClick" text="Cliente" fx:id="menuItemCadastroCliente" />
+            <MenuItem mnemonicParsing="false" onAction="#menuItemCadastroUsuarioClick" text="Usuario" fx:id="menuItemCadastroUsuario" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Sistema">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#menuItemSistemaSairClicked" text="Sair" fx:id="menuItemSistemaSair" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane fx:id="achorPane" prefHeight="562.0" prefWidth="800.0" styleClass="bg" />
+  </children>
+</VBox>

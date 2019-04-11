@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="570.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.UsuarioListaController">
+  <center>
+    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Consulta">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <GridPane prefHeight="464.0" prefWidth="800.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
+                  <children>
+                    <TitledPane animated="false" prefHeight="168.0" prefWidth="727.0" text="FILTROS" GridPane.columnIndex="0" GridPane.columnSpan="11" GridPane.rowIndex="1" GridPane.rowSpan="3">
+                      <content>
+                        <GridPane alignment="CENTER" prefHeight="102.0" prefWidth="793.0000915527344">
+                          <children>
+                            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="74.0" text="Nome:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+                              <font>
+                                <Font size="15.0" />
+                              </font>
+                            </Label>
+                            <TextField id="txtNome" fx:id="txtPesquisarNome" alignment="CENTER" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                              </GridPane.margin>
+                            </TextField>
+                            <Button fx:id="btPesquisar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btPesquisarClick" prefWidth="94.0" text="Pesquisar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                      </content>
+                    </TitledPane>
+                    <TableView fx:id="tableViewUsuario" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="11" GridPane.rowIndex="4" GridPane.rowSpan="7">
+                      <columns>
+                        <TableColumn prefWidth="75.0" text="Id" fx:id="tableViewId" />
+                        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="239.0" text="Nome do Usuario" fx:id="tableViewNome" />
+                        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="134.0" text="Login do Usuário" fx:id="tableViewLogin" />
+                        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="Status do Usuário" fx:id="tableViewStatus" />
+                      </columns>
+                    </TableView>
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Cadastro">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <VBox prefHeight="464.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                    <TitledPane animated="false" prefHeight="89.0" prefWidth="801.0" text="Operações">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="38.0" prefWidth="796.0">
+                          <children>
+                            <FlowPane prefHeight="49.0" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <children>
+                                <Button fx:id="btInserir" mnemonicParsing="false" onAction="#btInserirClick" text="Inserir" FlowPane.margin="$x1" />
+                                <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#btSalvarClick" text="Salvar" FlowPane.margin="$x1" />
+                                <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#btAlterarClick" text="Alterar" FlowPane.margin="$x1" />
+                                <Button fx:id="btExcluir" mnemonicParsing="false" onAction="#btExcluirClick" text="Excluir" FlowPane.margin="$x1" />
+                                <Button id="idFechar" fx:id="btFechar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Fechar">
+                                  <FlowPane.margin>
+                                    <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                                  </FlowPane.margin>
+                                </Button>
+                              </children>
+                            </FlowPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </TitledPane>
+                    <AnchorPane prefHeight="405.0" prefWidth="800.0">
+                      <children>
+                        <GridPane prefHeight="405.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <Label text="ID:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                              <GridPane.margin>
+                                <Insets right="5.0" fx:id="x2" />
+                              </GridPane.margin>
+                            </Label>
+                            <Label text="Nome do Usuário:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x2" GridPane.rowIndex="2" />
+                            <TextField fx:id="txtId" onAction="#txtId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <TextField fx:id="txtNome" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                            <Label alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="253.0" text="Login do Usuario" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Label alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="285.0" text="Senha do Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                            <Label alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="235.0" text="Status do Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                            <TextField fx:id="txtLogin" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <TextField fx:id="txtSenha" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                            <ComboBox fx:id="cbStatus" prefHeight="21.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="160.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="106.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="0.0" prefWidth="0.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="89.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                      </children>
+                    </AnchorPane>
+                  </children>
+                </VBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </center>
+  <top>
+    <Label alignment="CENTER" prefHeight="75.0" prefWidth="793.0" text="Cadastro de Usuário" BorderPane.alignment="CENTER">
+      <font>
+        <Font name="Arial Bold" size="18.0" />
+      </font>
+    </Label>
+  </top>
+</BorderPane>
