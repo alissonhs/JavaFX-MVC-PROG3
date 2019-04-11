@@ -35,10 +35,10 @@ public class DaoUsuario {
         StringBuilder sql = new StringBuilder();
         if (id > 0) {
             sql.append("update usuario u set u.nomeUsuario = ?, ");
-            sql.append("u.loginUsuario = ?, u.senhaUsuario = ?, u.statusUsuario = ? where u.idUsuario = ?");
+            sql.append("u.loginUsuario = ?, u.senhaUsuario = SHA2(?,'256'), u.statusUsuario = ? where u.idUsuario = ?");
         } else {
             sql.append("insert into usuario (nomeUsuario, loginUsuario, senhaUsuario,statusUsuario,idUsuario) ");
-            sql.append("values (?,?,?,?,?) ");
+            sql.append("values (?,?,SHA2(?,'256'),?,?) ");
         }
         try {
             PreparedStatement ps = this.conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
