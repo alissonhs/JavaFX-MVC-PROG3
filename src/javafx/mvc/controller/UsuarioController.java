@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +39,7 @@ import javafx.stage.Stage;
  *
  * @author Marlon
  */
-public class UsuarioListaController implements Initializable {
+public class UsuarioController implements Initializable {
 
     @FXML
     private Button btAlterar;
@@ -58,7 +60,7 @@ public class UsuarioListaController implements Initializable {
     private Button btSalvar;
 
     @FXML
-    private ComboBox<?> cbStatus;
+    private ComboBox<String> cbStatus;
 
     @FXML
     private TableColumn<?, ?> tableViewId;
@@ -101,13 +103,6 @@ public class UsuarioListaController implements Initializable {
     @FXML
     void btInserirClick(ActionEvent event) throws Exception {
 
-        Usuario usu = new Usuario();
-        boolean okClicked = showDialog(usu);
-        if (okClicked) {
-            this.du.salvar(usu);
-            listarUsuarios();
-        }
-
     }
 
     @FXML
@@ -127,9 +122,12 @@ public class UsuarioListaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       
         du = new DaoUsuario(Conexao.getInstance().getConn());
+        try {
+            listarUsuarios();
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private DaoUsuario du;
@@ -154,33 +152,11 @@ public class UsuarioListaController implements Initializable {
             }
             c.setCriterio(" where nomeUsuario like '%" + par + "%'");
         }
-        
+
         lista = (List<Usuario>) du.getByCriterios(c);
         listaObserver = FXCollections.observableArrayList(lista);
-        
+
         tableViewUsuario.setItems(listaObserver);
 
     }
-
-    private boolean showDialog(Usuario usu) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(UsuarioListaController.class.getResource("/javafx/mvc/view/UsuarioEdicao.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Cadastro de Usuário.");
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        UsuarioEdicaoController u = loader.getController();
-        u.setDialogStage(dialogStage);
-        u.setUsuario(usu);
-
-        //Aqui ele mostra a TELA '-' //
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.showAndWait();
-
-        return u.isOkClicked();
-
-    }
-
 }
