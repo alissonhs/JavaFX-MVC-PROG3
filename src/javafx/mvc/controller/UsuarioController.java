@@ -5,10 +5,10 @@
  */
 package javafx.mvc.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,23 +16,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.mvc.dao.Criterios;
 import javafx.mvc.dao.DaoUsuario;
 import javafx.mvc.model.Usuario;
 import javafx.mvc.services.Conexao;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -42,13 +44,10 @@ import javafx.stage.Stage;
 public class UsuarioController implements Initializable {
 
     @FXML
-    private Button btAlterar;
+    private Button btCancelar;
 
     @FXML
     private Button btExcluir;
-
-    @FXML
-    private Button btFechar;
 
     @FXML
     private Button btInserir;
@@ -61,6 +60,9 @@ public class UsuarioController implements Initializable {
 
     @FXML
     private ComboBox<String> cbStatus;
+
+    @FXML
+    private TabPane tabUsuario;
 
     @FXML
     private TableColumn<?, ?> tableViewId;
@@ -87,47 +89,93 @@ public class UsuarioController implements Initializable {
     private TextField txtPesquisarNome;
 
     @FXML
-    private TextField txtSenha;
+    private PasswordField txtSenha;
 
     @FXML
     private TableView<Usuario> tableViewUsuario;
 
     @FXML
-    void btAlterarClick(ActionEvent event) {
+    void btCancelarClick(ActionEvent event) {
+        camposEnabled(true);
+        btEnabled(1);
+        limparCampos();
     }
 
     @FXML
-    void btExcluirClick(ActionEvent event) {
+    void btExcluirClick(ActionEvent event) throws Exception {
+        Usuario usuario = new Usuario();
+        usuario.setId(Integer.parseInt(txtId.getText()));
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setContentText("Deseja realmente excluir o Item?");
+        Optional<ButtonType> opcao = confirm.showAndWait();
+        if (opcao.get().getButtonData().equals(ButtonBar.ButtonData.OK_DONE)) {
+            this.du.remover(usuario);
+            listarUsuarios();
+        }
+
+        camposEnabled(true);
+        btEnabled(1);
+        limparCampos();
     }
 
     @FXML
     void btInserirClick(ActionEvent event) throws Exception {
+        camposEnabled(false);
+        btEnabled(2);
+        limparCampos();
 
+        txtId.setText("0");
     }
 
     @FXML
     void btPesquisarClick(ActionEvent event) throws Exception {
+        listarUsuarios();
+    }
+
+    @FXML
+    void btSalvarClick(ActionEvent event) throws Exception {
+
+        Usuario usuario = new Usuario();
+
+        usuario.setId(Integer.parseInt(txtId.getText()));
+        usuario.setNome(txtNome.getText());
+        usuario.setLogin(txtLogin.getText());
+        usuario.setSenha(txtSenha.getText());
+        usuario.setStatus(cbStatus.getValue());
+
+        this.du.salvar(usuario);
+
+        camposEnabled(true);
+        btEnabled(1);
+
+        limparCampos();
 
         listarUsuarios();
 
     }
 
     @FXML
-    void btSalvarClick(ActionEvent event) {
-    }
+    void tableViewUsuarioCliked(MouseEvent event) {
 
-    @FXML
-    void txtId(ActionEvent event) {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        btEnabled(1);
+        camposEnabled(true);
+        limparCampos();
+
         du = new DaoUsuario(Conexao.getInstance().getConn());
         try {
             listarUsuarios();
         } catch (Exception ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        tableViewUsuario.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> selecionaUsuario(newvalue));
+
     }
 
     private DaoUsuario du;
@@ -144,7 +192,7 @@ public class UsuarioController implements Initializable {
         Criterios c = new Criterios("");
         if (!txtNome.getText().trim().isEmpty()) {
             String par = txtNome.getText();
-            if (!par.matches("[A-Za-z0-9]")) {
+            if (!par.matches("[A-Za-z0-9]+")) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Caracteres Inválidos");
                 alert.show();
@@ -152,11 +200,76 @@ public class UsuarioController implements Initializable {
             }
             c.setCriterio(" where nomeUsuario like '%" + par + "%'");
         }
-
         lista = (List<Usuario>) du.getByCriterios(c);
         listaObserver = FXCollections.observableArrayList(lista);
 
         tableViewUsuario.setItems(listaObserver);
+    }
 
+    private void selecionaUsuario(Usuario u) {
+        if (u != null) {
+            txtId.setText(String.valueOf(u.getId()));
+            txtNome.setText(u.getNome());
+            txtLogin.setText(u.getLogin());
+            txtSenha.setText(u.getSenha());
+            cbStatus.setValue(u.getStatus());
+
+            SingleSelectionModel<Tab> tabModel = tabUsuario.getSelectionModel();
+            tabModel.select(1);
+            camposEnabled(false);
+            btEnabled(3);
+        }
+    }
+
+    private void btEnabled(int id) {
+        switch (id) {
+            case 1:
+                btInserir.setDisable(false);
+                btSalvar.setDisable(true);
+                btExcluir.setDisable(true);
+                btCancelar.setDisable(true);
+                break;
+            case 2:
+                btInserir.setDisable(true);
+                btSalvar.setDisable(false);
+                btExcluir.setDisable(true);
+                btCancelar.setDisable(false);
+                break;
+            case 3:
+                btInserir.setDisable(true);
+                btSalvar.setDisable(false);
+                btExcluir.setDisable(false);
+                btCancelar.setDisable(false);
+                break;
+            default:
+                btInserir.setDisable(false);
+                btSalvar.setDisable(true);
+                btExcluir.setDisable(true);
+                btCancelar.setDisable(true);
+        }
+    }
+
+    private void camposEnabled(boolean b) {
+        txtId.setDisable(true);
+        txtNome.setDisable(b);
+        txtLogin.setDisable(b);
+        txtSenha.setDisable(b);
+        cbStatus.setDisable(b);
+    }
+
+    private void limparCampos() {
+        txtId.setText("");
+        txtNome.setText("");
+        txtLogin.setText("");
+        txtSenha.setText("");
+
+        
+        ArrayList<String> opcoes = new ArrayList<String>();
+        opcoes.add("Ativo");
+        opcoes.add("Inativo");
+        cbStatus.setItems(FXCollections.observableArrayList(opcoes));
+
+        SingleSelectionModel<Tab> tabModel = tabUsuario.getSelectionModel();
+        tabModel.select(0);
     }
 }
