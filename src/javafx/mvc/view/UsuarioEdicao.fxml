@@ -142,6 +142,11 @@
                                 </FXCollections>
                               </items>
                             </ComboBox>
+                            <Button fx:id="btnAlterarSenha" minWidth="23.0" mnemonicParsing="false" prefWidth="23.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <GridPane.margin>
+                                <Insets left="10.0" />
+                              </GridPane.margin>
+                            </Button>
                           </children>
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="160.0" />

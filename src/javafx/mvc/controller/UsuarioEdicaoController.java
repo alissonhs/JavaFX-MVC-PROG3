@@ -1,11 +1,15 @@
 package javafx.mvc.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.mvc.model.Usuario;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -27,6 +31,9 @@ public class UsuarioEdicaoController implements Initializable {
 
     @FXML
     private Button btSalvar;
+   
+    @FXML
+    private Button btnAlterarSenha;
 
     @FXML
     private ComboBox<String> cbStatus;
@@ -54,9 +61,15 @@ public class UsuarioEdicaoController implements Initializable {
     @FXML
     void btSalvarClick(ActionEvent event) {
     }
+    
+    void btnAlterarSenha(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(AlterarSenhaController.class.getResource("/javafx/mvc/view/AlterarSenha.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+    }
 
    
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
