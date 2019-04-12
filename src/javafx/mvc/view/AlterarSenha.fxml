@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="230.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafx.mvc.controller.AlterarSenhaController">
+  <children>
+    <GridPane layoutX="39.0" layoutY="48.0" prefHeight="120.0" prefWidth="323.0">
+      <children>
+        <TextField fx:id="txtNovaSenha" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNovaSenhaConf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label id="lbNovaSenha" alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="200.0" text="Nova Senha :" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <font>
+            <Font name="Arial" size="14.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label id="lbConfirmaNovaSenha" alignment="CENTER_RIGHT" font="$x1" prefHeight="48.0" prefWidth="200.0" text="Confirme Nova Senha :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="165.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="158.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="101.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <HBox alignment="CENTER_RIGHT" layoutX="0.0" layoutY="167.0" prefHeight="39.0" prefWidth="400.0">
+      <children>
+        <Button fx:id="btnSalvar" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" styleClass="btn-primary" text="Salvar" textOverrun="ELLIPSIS">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin>
+        </Button>
+        <Button fx:id="btnCancelar" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" styleClass="btn-danger" text="Cancelar" textAlignment="LEFT">
+          <HBox.margin>
+            <Insets right="10.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="48.0" prefWidth="400.0">
+      <center>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="400.0" text="Alteração De Senha" textAlignment="LEFT">
+          <font>
+            <Font name="Symbol" size="25.0" />
+          </font>
+        </Label>
+      </center>
+    </BorderPane>
+  </children>
+</AnchorPane>
