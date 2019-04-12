@@ -37,5 +37,10 @@
         <Font name="Nirmala UI" size="45.0" />
       </font>
     </Label>
+    <Label fx:id="lbErro" alignment="CENTER_RIGHT" contentDisplay="CENTER" disable="false" layoutX="16.0" layoutY="242.0" minHeight="18.0" opacity="1.0" prefHeight="26.0" prefWidth="370.0" text="" textFill="RED" underline="false" visible="true" wrapText="false">
+      <font>
+        <Font name="System Bold" size="13.0" />
+      </font>
+    </Label>
   </children>
 </AnchorPane>
