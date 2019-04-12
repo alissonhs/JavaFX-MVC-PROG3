@@ -49,7 +49,7 @@ public class PrincipalController implements Initializable {
     @FXML
     void menuItemCadastroUsuarioClick() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(UsuarioListaController.class.getResource("/javafx/mvc/view/UsuarioEdicao.fxml"));
+        loader.setLocation(UsuarioController.class.getResource("/javafx/mvc/view/UsuarioEdicao.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
