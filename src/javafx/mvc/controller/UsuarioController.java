@@ -95,11 +95,12 @@ public class UsuarioController implements Initializable {
     private TableView<Usuario> tableViewUsuario;
 
     @FXML
-    void btCancelarClick(ActionEvent event) {
+    void btCancelarClick(ActionEvent event) throws Exception {
         camposEnabled(true);
         btEnabled(1);
         limparCampos();
         tabSelected(0);
+        listarUsuarios();
     }
 
     @FXML
@@ -129,6 +130,9 @@ public class UsuarioController implements Initializable {
         limparCampos();
 
         txtId.setText("0");
+        
+        cbStatus.getSelectionModel().selectFirst();
+        
     }
 
     @FXML
