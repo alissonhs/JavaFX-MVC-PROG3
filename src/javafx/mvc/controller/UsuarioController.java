@@ -99,6 +99,7 @@ public class UsuarioController implements Initializable {
         camposEnabled(true);
         btEnabled(1);
         limparCampos();
+        tabSelected(0);
     }
 
     @FXML
@@ -117,6 +118,8 @@ public class UsuarioController implements Initializable {
         camposEnabled(true);
         btEnabled(1);
         limparCampos();
+        listarUsuarios();  
+        tabSelected(0);
     }
 
     @FXML
@@ -150,9 +153,8 @@ public class UsuarioController implements Initializable {
         btEnabled(1);
 
         limparCampos();
-
-        listarUsuarios();
-
+        listarUsuarios();   
+        tabSelected(0);
     }
 
     @FXML
@@ -166,6 +168,7 @@ public class UsuarioController implements Initializable {
         btEnabled(1);
         camposEnabled(true);
         limparCampos();
+        tabSelected(0);
 
         du = new DaoUsuario(Conexao.getInstance().getConn());
         try {
@@ -263,13 +266,15 @@ public class UsuarioController implements Initializable {
         txtLogin.setText("");
         txtSenha.setText("");
 
-        
         ArrayList<String> opcoes = new ArrayList<String>();
         opcoes.add("Ativo");
         opcoes.add("Inativo");
         cbStatus.setItems(FXCollections.observableArrayList(opcoes));
 
+    }
+
+    private void tabSelected(int id) {
         SingleSelectionModel<Tab> tabModel = tabUsuario.getSelectionModel();
-        tabModel.select(0);
+        tabModel.select(id);
     }
 }
