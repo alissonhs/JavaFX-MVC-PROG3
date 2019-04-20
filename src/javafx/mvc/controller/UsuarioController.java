@@ -5,6 +5,7 @@
  */
 package javafx.mvc.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.mvc.dao.Criterios;
 import javafx.mvc.dao.DaoUsuario;
 import javafx.mvc.model.Usuario;
 import javafx.mvc.services.Conexao;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -35,6 +38,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -42,6 +48,16 @@ import javafx.scene.input.MouseEvent;
  * @author Marlon
  */
 public class UsuarioController implements Initializable {
+
+    private Stage stagePrincipal;
+
+    public Stage getStagePrincipal() {
+        return stagePrincipal;
+    }
+
+    public void setStagePrincipal(Stage stagePrincipal) {
+        this.stagePrincipal = stagePrincipal;
+    }
 
     @FXML
     private Button btCancelar;
@@ -95,6 +111,39 @@ public class UsuarioController implements Initializable {
     private TableView<Usuario> tableViewUsuario;
 
     @FXML
+    private Button btnAlterarSenha;
+
+    @FXML
+    void btnAlterarSenhaClick(ActionEvent event) throws IOException, Exception {
+        //Abrir tela de alterar senha
+        //Stage primary = (Stage) this.btCancelar.getParent().getScene().getRoot().get
+        Stage alterarSenha = new Stage();
+        FXMLLoader loaderSenha = new FXMLLoader();
+        loaderSenha.setLocation(AlterarSenhaController.class.getResource("/javafx/mvc/view/AlterarSenha.fxml"));
+
+        AnchorPane pageSenha = (AnchorPane) loaderSenha.load();
+
+        alterarSenha.setTitle("Alterar senha!");
+        Scene sceneSenha = new Scene(pageSenha);
+        // sceneSenha.getStylesheets().add(this.getClass().getResource("Estilo1.css").toString());
+
+        alterarSenha.setScene(sceneSenha);
+
+        AlterarSenhaController cSenha = loaderSenha.getController();
+        cSenha.setDialogStage(alterarSenha);
+
+        Criterios c = new Criterios(" where idUsuario=" + this.txtId.getText());
+        List<Usuario> users = (List<Usuario>) du.getByCriterios(c);
+        cSenha.setUser(users.get(0));
+        //alterarSenha.initOwner(this);
+        alterarSenha.initModality(Modality.APPLICATION_MODAL);
+        alterarSenha.showAndWait();
+
+        txtSenha.setText(cSenha.getUser().getSenha());
+
+    }
+
+    @FXML
     void btCancelarClick(ActionEvent event) throws Exception {
         camposEnabled(true);
         btEnabled(1);
@@ -119,7 +168,7 @@ public class UsuarioController implements Initializable {
         camposEnabled(true);
         btEnabled(1);
         limparCampos();
-        listarUsuarios();  
+        listarUsuarios();
         tabSelected(0);
     }
 
@@ -130,9 +179,9 @@ public class UsuarioController implements Initializable {
         limparCampos();
 
         txtId.setText("0");
-        
+
         cbStatus.getSelectionModel().selectFirst();
-        
+
     }
 
     @FXML
@@ -157,7 +206,7 @@ public class UsuarioController implements Initializable {
         btEnabled(1);
 
         limparCampos();
-        listarUsuarios();   
+        listarUsuarios();
         tabSelected(0);
     }
 
@@ -168,7 +217,6 @@ public class UsuarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         btEnabled(1);
         camposEnabled(true);
         limparCampos();
@@ -224,6 +272,7 @@ public class UsuarioController implements Initializable {
             SingleSelectionModel<Tab> tabModel = tabUsuario.getSelectionModel();
             tabModel.select(1);
             camposEnabled(false);
+            txtSenha.setDisable(true);
             btEnabled(3);
         }
     }
@@ -235,24 +284,28 @@ public class UsuarioController implements Initializable {
                 btSalvar.setDisable(true);
                 btExcluir.setDisable(true);
                 btCancelar.setDisable(true);
+                btnAlterarSenha.setDisable(true);
                 break;
             case 2:
                 btInserir.setDisable(true);
                 btSalvar.setDisable(false);
                 btExcluir.setDisable(true);
                 btCancelar.setDisable(false);
+                btnAlterarSenha.setDisable(true);
                 break;
             case 3:
                 btInserir.setDisable(true);
                 btSalvar.setDisable(false);
                 btExcluir.setDisable(false);
                 btCancelar.setDisable(false);
+                btnAlterarSenha.setDisable(false);
                 break;
             default:
                 btInserir.setDisable(false);
                 btSalvar.setDisable(true);
                 btExcluir.setDisable(true);
                 btCancelar.setDisable(true);
+                btnAlterarSenha.setDisable(true);
         }
     }
 
@@ -262,6 +315,7 @@ public class UsuarioController implements Initializable {
         txtLogin.setDisable(b);
         txtSenha.setDisable(b);
         cbStatus.setDisable(b);
+        txtSenha.setDisable(b);
     }
 
     private void limparCampos() {

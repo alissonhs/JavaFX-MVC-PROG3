@@ -54,6 +54,8 @@ public class PrincipalController implements Initializable {
         Scene scene = new Scene(root);
 
         achorPane.getChildren().add(root);
+        
+       
     }
 
     /**
