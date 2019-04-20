@@ -101,7 +101,7 @@ public class LoginController implements Initializable {
 
         DaoUsuario daoUsuario = new DaoUsuario(Conexao.getInstance().getConn());
 
-        Criterios c = new Criterios(" WHERE SHA2(nomeUsuario,'256')='" + HashSHA2.hashSHA2(digitedUser.getLogin()) + "' AND senhaUsuario='" + HashSHA2.hashSHA2(digitedUser.getSenha()) + "' limit 1;");
+        Criterios c = new Criterios(" WHERE SHA2(nomeUsuario,'256')='" + HashSHA2.hashSHA2(digitedUser.getLogin()) + "' AND senhaUsuario='" + HashSHA2.hashSHA2(digitedUser.getSenha()) + "' and statusUsuario='Ativo' limit 1;");
 
         List<Usuario> resultadosDao = (List<Usuario>) daoUsuario.getByCriterios(c);
 
