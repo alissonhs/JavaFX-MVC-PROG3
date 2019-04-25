@@ -40,15 +40,10 @@ INSERT INTO `cliente` (`idcliente`, `nome`, `cnpj`, `situacao`) VALUES
 	(10, 'Deu Branco', '44191973079', 'Ativo'),
 	(11, 'Cebolinha', '12321312', 'Ativo'),
 	(12, 'Test', '123', 'Ativo'),
-	(13, NULL, NULL, 'Ativo'),
-	(14, NULL, NULL, 'Ativo'),
-	(15, NULL, NULL, 'Ativo'),
-	(16, NULL, NULL, 'Ativo'),
-	(17, NULL, NULL, 'Ativo'),
-	(18, 'Ariosvaldo', '', 'Ativo'),
-	(19, 'asd', '', 'Ativo'),
-	(20, 'asd', '90.359.312/0001-89', 'Inativo'),
-	(21, '123', '123.123.123-12', 'Inativo');
+	(13, 'Ariosvaldo', '', 'Ativo'),
+	(14, 'asd', '', 'Ativo'),
+	(15, 'asd', '90.359.312/0001-89', 'Inativo'),
+	(16, '123', '123.123.123-12', 'Inativo');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prog3bancoteste.teste
