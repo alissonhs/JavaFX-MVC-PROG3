@@ -266,7 +266,7 @@ public class UsuarioController implements Initializable {
             txtId.setText(String.valueOf(u.getId()));
             txtNome.setText(u.getNome());
             txtLogin.setText(u.getLogin());
-            txtSenha.setText(u.getSenha());
+            txtSenha.setText("");
             cbStatus.setValue(u.getStatus());
 
             SingleSelectionModel<Tab> tabModel = tabUsuario.getSelectionModel();

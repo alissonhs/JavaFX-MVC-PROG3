@@ -20,7 +20,8 @@ import javafx.mvc.model.Usuario;
  * @author Alisson H. Silva
  */
 public class DaoUsuario {
-        private Connection conn;
+
+    private Connection conn;
 
     public DaoUsuario(Connection conn) {
         this.conn = conn;
@@ -33,20 +34,30 @@ public class DaoUsuario {
         String status = u.getStatus();
         String senha = u.getSenha();
         StringBuilder sql = new StringBuilder();
+        Boolean mudouSenha = false;
         if (id > 0) {
-            sql.append("update usuario u set u.nomeUsuario = ?, ");
-            sql.append("u.loginUsuario = ?, u.senhaUsuario = SHA2(?,'256'), u.statusUsuario = ? where u.idUsuario = ?");
+            sql.append("update usuario u set u.nomeUsuario = ?, u.loginUsuario = ?, u.statusUsuario = ? ");
+            if (!senha.equals("")) {
+                mudouSenha = true;
+                sql.append(", u.senhaUsuario = SHA2(?,'256')");
+            }
+            sql.append(" where u.idUsuario = ?");
         } else {
-            sql.append("insert into usuario (nomeUsuario, loginUsuario, senhaUsuario,statusUsuario,idUsuario) ");
-            sql.append("values (?,?,SHA2(?,'256'),?,?) ");
+            sql.append("insert into usuario (nomeUsuario, loginUsuario, statusUsuario, senhaUsuario, idUsuario) ");
+            sql.append("values (?,?,?,SHA2(?,'256'),?) ");
         }
         try {
             PreparedStatement ps = this.conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, nome);
             ps.setString(2, login);
-            ps.setString(3, senha);
-            ps.setString(4, status);
-            ps.setLong(5, id);
+            ps.setString(3, status);
+            if (mudouSenha || id == 0) {
+                ps.setString(4, senha);
+                ps.setLong(5, id);
+            } else {
+                ps.setLong(4, id);
+            }
+
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
