@@ -19,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -50,8 +49,6 @@ public class AlterarSenhaController implements Initializable {
             Alert erro = new Alert(Alert.AlertType.ERROR);
             erro.setContentText("As senhas não são iguais!");
             Optional<ButtonType> opcao = erro.showAndWait();
-            if (opcao.get().getButtonData().equals(ButtonBar.ButtonData.OK_DONE)) {
-            }
             return;
         }
 

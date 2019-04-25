@@ -100,7 +100,7 @@ public class DaoUsuario {
                     user.setSenha(rs.getString("senhaUsuario"));
                     user.setStatus(rs.getString("statusUsuario"));
                     al.add(user);
-                    System.out.println(user.getId());
+                    //System.out.println(user.getId());
                 } while (rs.next());
             }
         } catch (SQLException ex) {
