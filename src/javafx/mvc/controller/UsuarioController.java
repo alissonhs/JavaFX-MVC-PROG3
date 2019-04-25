@@ -193,21 +193,77 @@ public class UsuarioController implements Initializable {
     void btSalvarClick(ActionEvent event) throws Exception {
 
         Usuario usuario = new Usuario();
-
         usuario.setId(Integer.parseInt(txtId.getText()));
-        usuario.setNome(txtNome.getText());
+        usuario.setNome(txtNome.getText().trim());
         usuario.setLogin(txtLogin.getText());
         usuario.setSenha(txtSenha.getText());
         usuario.setStatus(cbStatus.getValue());
 
-        this.du.salvar(usuario);
+        ArrayList<String> listaDeErros = new ArrayList<>();
+        if (usuario.getNome().isEmpty()) {
+            listaDeErros.add("Campo nome não pode ser vazio!");
+        }
+        if (usuario.getNome().length() > 150) {
+            listaDeErros.add("Campo nome não pode ter mais que 150 caracteres!");
+        }
+        if (usuario.getLogin().isEmpty()) {
+            listaDeErros.add("Campo usuario/login não pode ser vazio!");
+        }
+        if (usuario.getLogin().length() > 45) {
+            listaDeErros.add("Campo usuario/login não pode ter mais que 45 caracteres!");
+        }
+        if (usuario.getId() == 0) {
+            if (usuario.getSenha().isEmpty()) {
+                listaDeErros.add("Campo senha não pode ser vazio!");
+            }
+        }
+        if (usuario.getStatus().length() < 2) {
+            listaDeErros.add("Campo status inválido!");
+        }
 
-        camposEnabled(true);
-        btEnabled(1);
+        String filtro;
+        if (usuario.getId() == 0) {
+            filtro = " where MD5(loginUsuario) = MD5('" + usuario.getLogin() + "') limit 1;";
+        } else {
+            filtro = " where MD5(loginUsuario) = MD5('" + usuario.getLogin() + "') and idUsuario != " + usuario.getId() + " limit 1;";
+        }
+        Criterios c = new Criterios(filtro);
+        List<Usuario> listaUsuarioDuplicado = (List<Usuario>) this.du.getByCriterios(c);
+        if (!listaUsuarioDuplicado.isEmpty()) {
+            listaDeErros.add("Login já registrado!");
+        }
 
-        limparCampos();
-        listarUsuarios();
-        tabSelected(0);
+        if (!listaDeErros.isEmpty()) {
+
+            Alert confirm = new Alert(Alert.AlertType.ERROR);
+
+            confirm.setHeaderText("Os seguintes problemas foram encontrados:");
+
+            for (String str : listaDeErros) {
+                confirm.setContentText(confirm.getContentText() + "\r\n• " + str);
+            }
+
+            Optional<ButtonType> opcao = confirm.showAndWait();
+
+            if (opcao.get()
+                    .getButtonData().equals(ButtonBar.ButtonData.OK_DONE)) {
+
+            }
+        } else {
+            this.du.salvar(usuario);
+
+            camposEnabled(
+                    true);
+            btEnabled(
+                    1);
+
+            limparCampos();
+
+            listarUsuarios();
+
+            tabSelected(
+                    0);
+        }
     }
 
     @FXML
@@ -225,8 +281,10 @@ public class UsuarioController implements Initializable {
         du = new DaoUsuario(Conexao.getInstance().getConn());
         try {
             listarUsuarios();
+
         } catch (Exception ex) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         tableViewUsuario.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> selecionaUsuario(newvalue));
