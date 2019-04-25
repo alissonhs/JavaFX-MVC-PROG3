@@ -51,7 +51,7 @@ public class DaoUsuario {
             ps.setString(1, nome);
             ps.setString(2, login);
             ps.setString(3, status);
-            if (mudouSenha) {
+            if (mudouSenha || id == 0) {
                 ps.setString(4, senha);
                 ps.setLong(5, id);
             } else {
