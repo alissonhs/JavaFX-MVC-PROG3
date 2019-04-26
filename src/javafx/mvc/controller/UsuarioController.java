@@ -23,6 +23,7 @@ import javafx.mvc.dao.Criterios;
 import javafx.mvc.dao.DaoUsuario;
 import javafx.mvc.model.Usuario;
 import javafx.mvc.services.Conexao;
+import javafx.mvc.services.HashSHA2;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -195,7 +196,7 @@ public class UsuarioController implements Initializable {
         Usuario usuario = new Usuario();
         usuario.setId(Integer.parseInt(txtId.getText()));
         usuario.setNome(txtNome.getText().trim());
-        usuario.setLogin(txtLogin.getText());
+        usuario.setLogin(txtLogin.getText().toLowerCase());
         usuario.setSenha(txtSenha.getText());
         usuario.setStatus(cbStatus.getValue());
 
@@ -223,9 +224,9 @@ public class UsuarioController implements Initializable {
 
         String filtro;
         if (usuario.getId() == 0) {
-            filtro = " where MD5(loginUsuario) = MD5('" + usuario.getLogin() + "') limit 1;";
+            filtro = " where SHA2(loginUsuario,'256') = '" + HashSHA2.hashSHA2(usuario.getLogin()) + "' limit 1;";
         } else {
-            filtro = " where MD5(loginUsuario) = MD5('" + usuario.getLogin() + "') and idUsuario != " + usuario.getId() + " limit 1;";
+            filtro = " where SHA2(loginUsuario,'256') = '" + HashSHA2.hashSHA2(usuario.getLogin()) + "' and idUsuario != " + usuario.getId() + " limit 1;";
         }
         Criterios c = new Criterios(filtro);
         List<Usuario> listaUsuarioDuplicado = (List<Usuario>) this.du.getByCriterios(c);
@@ -251,18 +252,11 @@ public class UsuarioController implements Initializable {
             }
         } else {
             this.du.salvar(usuario);
-
-            camposEnabled(
-                    true);
-            btEnabled(
-                    1);
-
+            camposEnabled(true);
+            btEnabled(1);
             limparCampos();
-
             listarUsuarios();
-
-            tabSelected(
-                    0);
+            tabSelected(0);
         }
     }
 

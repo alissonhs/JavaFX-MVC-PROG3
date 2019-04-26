@@ -67,6 +67,8 @@ public class AlterarSenhaController implements Initializable {
 
     @FXML
     void btnCancelarClick(ActionEvent event) {
+        this.user.setSenha("");
+        this.isFinished = true;
         this.dialogStage.close();
     }
 
