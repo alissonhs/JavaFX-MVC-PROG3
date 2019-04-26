@@ -57,7 +57,6 @@ public class DaoUsuario {
             } else {
                 ps.setLong(4, id);
             }
-
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

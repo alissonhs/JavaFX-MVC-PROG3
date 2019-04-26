@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
         Boolean isValid = false;
 
         Usuario digitedUser = new Usuario();
-        digitedUser.setLogin(txtLogin.getText());
+        digitedUser.setLogin(txtLogin.getText().toLowerCase());
         digitedUser.setSenha(txtSenha.getText());
 
         DaoUsuario daoUsuario = new DaoUsuario(Conexao.getInstance().getConn());
